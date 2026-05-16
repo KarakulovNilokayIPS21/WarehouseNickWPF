@@ -1,0 +1,32 @@
+﻿<Window x:Class="WarehouseNickWPF.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление товарами" Height="600" Width="1000"
+        WindowStartupLocation="CenterOwner">
+    <DockPanel Margin="10">
+        <TextBlock DockPanel.Dock="Top" Text="{Binding WarehouseName, StringFormat='Склад: {0}'}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Добавить товар" Command="{Binding AddProductCommand}" Width="120" Margin="5"/>
+            <Button Content="Изменить товар" Command="{Binding EditProductCommand}" Width="120" Margin="5"/>
+            <Button Content="Удалить товар" Command="{Binding DeleteProductCommand}" Width="120" Margin="5"/>
+            <Button Content="Импорт товаров" Command="{Binding ImportProductsCommand}" Width="120" Margin="5"/>
+            <Button Content="Накладные" Command="{Binding OpenInvoicesCommand}" Width="120" Margin="5"/>
+            <Button Content="Справочники" Command="{Binding OpenDirectoriesCommand}" Width="120" Margin="5"/>
+        </StackPanel>
+
+        
+        <DataGrid ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Product.Name}" Width="150"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}" Width="100"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding ManufacturerName}" Width="120"/>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding SupplierName}" Width="120"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Product.Price, StringFormat='C'}" Width="80"/>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Product.Stock}" Width="80"/>
+                <DataGridTextColumn Header="Скидка %" Binding="{Binding Product.Discount}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

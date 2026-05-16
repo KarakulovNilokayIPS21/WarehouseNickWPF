@@ -1,0 +1,34 @@
+﻿<Window x:Class="WarehouseNickWPF.WarehouseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Склады" Height="450" Width="800"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="{Binding OrganizationName, StringFormat='Организация: {0}'}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBlock Grid.Row="1" Text="Склады" FontSize="16" Margin="0,0,0,10"/>
+
+        <ListView Grid.Row="2" ItemsSource="{Binding Warehouses}" SelectedItem="{Binding SelectedWarehouse}" Margin="0,0,0,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Наименование склада" DisplayMemberBinding="{Binding Name}" Width="450"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Новый склад" Command="{Binding AddWarehouseCommand}" Width="100" Margin="5"/>
+            <Button Content="Изменить склад" Command="{Binding EditWarehouseCommand}" Width="100" Margin="5"/>
+            <Button Content="Удалить склад" Command="{Binding DeleteWarehouseCommand}" Width="100" Margin="5"/>
+            <Button Content="Импорт товаров" Command="{Binding ImportProductsCommand}" Width="100" Margin="5"/>
+            <Button Content="ОК" Command="{Binding OkCommand}" Width="80" Margin="5" IsDefault="True"/>
+            <Button Content="Отмена" Click="CancelButton_Click" Width="80" Margin="5" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
